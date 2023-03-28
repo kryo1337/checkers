@@ -1,4 +1,5 @@
-from constants import *
+import pygame
+from checkers.constants import *
 
 
 class Piece:
@@ -7,7 +8,7 @@ class Piece:
         self.col = col
         self.color = color
         self.king = False
-        if self.color == RED:
+        if self.color == PURPLE:
             self.direction = -1
         else:
             self.direction = 1
@@ -27,6 +28,14 @@ class Piece:
         radius = SQUARE_SIZE // 2 - PADDING
         pygame.draw.circle(win, GREY, (self.x, self.y), radius + OUTLINE)
         pygame.draw.circle(win, self.color, (self.x, self.y), radius)
+        if self.king:
+            win.blit(CROWN, (self.x - CROWN.get_width()//2, self.y - CROWN.get_height()//2))
+
+    def move(self, row, col):
+        self.row = row
+        self.col = col
+        self.calc_pos()
+
 
     def __repr__(self):
         return str(self.color)
