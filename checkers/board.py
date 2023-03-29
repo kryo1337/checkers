@@ -6,7 +6,6 @@ from checkers.piece import Piece
 class Board:
     def __init__(self):
         self.board = []
-        self.selected_piece = None
         self.purple_left = self.white_left = 12
         self.purple_kings = self.white_kings = 0
         self.create_board()

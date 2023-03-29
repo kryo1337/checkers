@@ -1,6 +1,6 @@
 import pygame
 from checkers.constants import *
-from checkers.board import Board
+from checkers.game import Game
 
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -15,7 +15,7 @@ def get_row_col(pos):
 def main():
     run = True
     clock = pygame.time.Clock()
-    board = Board()
+    game = Game(WIN)
 
     while run:
         clock.tick(FPS)
@@ -24,11 +24,8 @@ def main():
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
-                row, col = get_row_col(pos)
-                piece = board.get_piece(row, col)
 
-        board.draw(WIN)
-        pygame.display.update()
+        game.update()
 
     pygame.quit()
 
